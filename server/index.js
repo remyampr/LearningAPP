@@ -14,8 +14,8 @@ app.get("/",(req,res)=>{
 })
 
 app.use(cors({
-    origin:'https://learning-appfrontend.vercel.app',
-    credentials:true
+    origin:['https://learning-appfrontend.vercel.app', 'http://localhost:5173'],
+    credentials: true 
 }))
 
 mongoose.connect(process.env.MONGO_URI)

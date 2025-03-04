@@ -56,7 +56,11 @@ const  login =async (req,res)=>{
             return res.status(400).json({error:"Password not match"})
         }
         const token= createToken(userExist._id);
-        res.cookie("token",token);
+        res.cookie("token", token, {
+            httpOnly: true,    // Prevents client-side access (security)
+            secure: true,      // Ensures cookies are sent over HTTPS
+            sameSite: "None"   // Allows cross-origin requests (important for frontend-backend on different domains)
+        });
         return res.status(200).json({message:"user Login successful",user:userExist})
 
 
