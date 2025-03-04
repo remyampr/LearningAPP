@@ -59,7 +59,8 @@ const  login =async (req,res)=>{
         res.cookie("token", token, {
             httpOnly: true,    // Prevents client-side access (security)
             secure: true,      // Ensures cookies are sent over HTTPS
-            sameSite: "None"   // Allows cross-origin requests (important for frontend-backend on different domains)
+            sameSite: "None"  , // Allows cross-origin requests (important for frontend-backend on different domains)
+            path: "/"   
         });
         return res.status(200).json({message:"user Login successful",user:userExist,Token : token})
 
