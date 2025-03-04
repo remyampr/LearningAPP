@@ -2,7 +2,8 @@ const jwt=require("jsonwebtoken");
 
 const authUser=(req,res,next)=>{
     try{
-        const {token}=req.cookies;
+        // const {token}=req.cookies;
+        let token = req.cookies.token || req.headers.authorization?.split(" ")[1]; // Check cookies first, then headers
         if(!token){
             return res.status( 401).json({error: "jwt not found"})
         }
